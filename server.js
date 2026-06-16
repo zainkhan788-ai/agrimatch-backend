@@ -44,6 +44,34 @@ app.get("/soiltypes", async (req, res) => {
   }
 });
 
+app.get("/soiltypes/:location", async (req, res) => {
+
+  const location = req.params.location;
+
+  try {
+
+    const result = await db.query(
+      `
+      SELECT DISTINCT s.soil_type
+      FROM soil_crop_rules s
+      JOIN sub_zones z
+      ON s.sub_zone_id = z.sub_zone_id
+      WHERE z.sub_zone_name = $1
+      `,
+      [location]
+    );
+
+    res.json(result.rows);
+
+  } catch (err) {
+
+    console.error(err);
+    res.status(500).json(err);
+
+  }
+
+});
+
 app.post("/analyze", async (req, res) => {
   const { location, soilType } = req.body;
 

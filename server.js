@@ -78,9 +78,8 @@ app.post("/analyze", async (req, res) => {
   const sql = `
     SELECT 
       s.recommended_crop,
-      s.n_min,
-      s.p_min,
-      s.k_min,
+      s.ph_min,
+      s.ph_max,
       s.temp_min,
       s.temp_max,
       s.humidity_min,

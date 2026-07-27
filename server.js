@@ -82,8 +82,6 @@ app.post("/analyze", async (req, res) => {
       s.ph_max,
       s.temp_min,
       s.temp_max,
-      s.humidity_min,
-      s.humidity_max,
       s.rain_min,
       s.rain_max,
       p.yield_maund,
